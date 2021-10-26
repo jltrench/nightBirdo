@@ -122,6 +122,30 @@ setInterval(() => {
   passaro.animar()
 }, 20)*/
 
+function estaoSobrepostos(elementoA, elementoB) {
+  const a = elementoA.getBoundingClientRect()
+  const b = elementoB.getBoundingClientRect()
+
+  const horizontal = a.left + a.width >= b.left
+    && b.left + b.width >= a.left
+  const vertical = a.top + a.height >= b.top
+    && b.top + b.height >= a.top
+  return horizontal && vertical
+}
+
+function colision(passaro, barreiras) {
+  let colision = false
+  barreiras.pares.forEach(parDeBarreiras => {
+    if (!colision) {
+      const superior = parDeBarreiras.superior.elemento
+      const inferior = parDeBarreiras.inferior.elemento
+      colision = estaoSobrepostos(passaro.elemento, superior)
+        || estaoSobrepostos(passaro.elemento, inferior)
+    }
+  })
+  return colision
+}
+
 function NightBirdo() {
   let pontos = 0
 
@@ -143,6 +167,10 @@ function NightBirdo() {
     const temporizador = setInterval(() => {
       barreiras.animar()
       passaro.animar()
+
+      if (colision(passaro, barreiras)) {
+        clearInterval(temporizador)
+      }
     }, 20)
   }
 }
