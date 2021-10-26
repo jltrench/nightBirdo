@@ -42,14 +42,14 @@
 .barreira .borda {
   height: 30px;
   width: 130px;
-  background: linear-gradient(90deg, #639301, #A5E82E);
+  background: linear-gradient(90deg, #3d3d3d, #8b8b8b);
   border: 2px solid #000;
 }
 
 .barreira .corpo {
   height: 150px;
   width: 110px;
-  background: linear-gradient(90deg, #639301, #A5E82E);
+  background: linear-gradient(90deg,#3d3d3d, #8b8b8b);
   border-left: 2px solid #000;
   border-right: 2px solid #000;
 }
@@ -58,4 +58,6 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  font-family: Pixel;
+  font-size: 70px;
 }
